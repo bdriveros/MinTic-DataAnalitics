@@ -55,7 +55,7 @@ def listar_empleados(db): #R (Read Listar empleados)
         print(f"Salario: {empleado['salario']}")
         print(f"Tipo de contrato: {empleado['tipo_contrato']}")
 
-def actualizar_empleados(db):
+def actualizar_empleados(db): #U (Update Actualizar empleados)
     cedula=input("Introduce la cedula que desea actualizar: ")
     if cedula in db:
         print(f"La cedula {cedula} se encuentra registrada en la base de datos")
