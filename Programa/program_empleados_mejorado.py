@@ -8,8 +8,8 @@ def limpiar_pantalla():
         os.system('cls')
     else:  # Para Unix/Linux/MacOS
         os.system('clear')
-
 # CRUD
+
 def crear_empleado(db): # C (Create Creación empleados)
     print("*"*18)
     print("* CREAR EMPLEADO *")
@@ -59,7 +59,7 @@ def actualizar_empleados(db): #U (Update Actualizar empleados)
     cedula=input("Introduce la cedula que desea actualizar: ")
     if cedula in db:
         print(f"La cedula {cedula} se encuentra registrada en la base de datos")
-        print(f"Alerta: presina enter en caso de querer continuar sin cambios")
+        print(f"Alerta: presiona enter en caso de querer continuar sin cambios")
         #cedula = (input("Introduce la cedula: "))
         new_nombres = input("Introduce los nuevos nombres del empleado: ")
         new_apellidos = input("Introduce los nuevos apellidos del empleado: ")
