@@ -123,7 +123,7 @@ if __name__ == "__main__":
             elif opcion == "2":
                 listar_empleados(db)
             elif opcion == "3":
-                actualizar_empleados(db)                                    #editar_campo_empleado(db)
+                actualizar_empleados(db)                                
             elif opcion == "4":
                 eliminar_empleado(db)
             elif opcion == "5":
