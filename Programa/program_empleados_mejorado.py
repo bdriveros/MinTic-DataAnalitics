@@ -2,6 +2,33 @@
 import os # El módulo os en Python proporciona y expone los detalles y la funcionalidad del sistema operativo
 import shelve # shelve implementa el almacenamiento persistente para objetos arbitrarios de Python que pueden ser serializados, usando una interfaz de programación similar a un diccionario.
 import re
+from datetime import datetime
+
+def validar_fecha(fecha_ing):
+    """Valida si una fecha ingresada tiene el formato YYYY-MM-DD.
+
+    Args:
+        fecha_ing (str): Fecha ingresada por el usuario.
+
+    Returns:
+        bool: True si la fecha es válida, False en caso contrario.
+    """
+
+    # Expresión regular para validar el formato YYYY-MM-DD
+    patron = r"^\d{4}-\d{2}-\d{2}$"
+
+    # Verifica si la fecha coincide con el patrón
+    if re.match(patron, fecha_ing):
+        try:
+            # Intenta convertir la cadena a un objeto datetime
+            datetime.strptime(fecha_ing, "%Y-%m-%d")
+            return True
+        except ValueError:
+            return False
+    else:
+        return False
+
+
 
 def limpiar_pantalla():
     # Verificar el sistema operativo
@@ -32,12 +59,27 @@ def crear_empleado(db): # C (Create Creación empleados)
                 raise ValueError("La edad debe ser positiva")
             break
         except ValueError:
-            print("La edad debe ser un número entero positivo.")
+            print(f"La edad debe ser un número entero positivo.")
     
     cargo = input("Introduce el cargo del empleado: ")
-    fecha_ing = input("Introduce la fecha de ingreso del empleado: ")
+    fecha_ing = input("Introduce la fecha de ingreso del empleado (YYYY-MM-DD): ")
+    
+    if validar_fecha(fecha_ing):
+        print(f"Fecha válida.")
+    else:
+        print(f"Fecha inválida. Por favor, ingrese la fecha en formato YYYY-MM-DD.")
+    
     eps = input("Introduce la eps del empleado: ")
-    salario = float(input("Introduce el salario: "))
+    
+    while True:
+        try:
+            salario = float(input("Introduce el salario: "))
+            if salario <= 0:
+                raise  ValueError("El salario debe ser positivo")
+            break
+        except  ValueError:
+            print(f"El salario debe ser un número positivo")
+
     tipo_de_contrato = input("Introduce el tipo de contrato del empleado: ")
     
    
