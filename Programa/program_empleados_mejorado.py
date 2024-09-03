@@ -42,6 +42,8 @@ def crear_empleado(db): # C (Create Creación empleados)
     print("*"*18)
     print("* CREAR EMPLEADO *")
     print("*"*18)
+    
+    # Validacion de inputs
     while True: # Verifica que no este en base de datos
         cedula = (input("Introduce la cedula: "))
         if not cedula.isdigit() or cedula in db:
@@ -82,8 +84,7 @@ def crear_empleado(db): # C (Create Creación empleados)
 
     tipo_de_contrato = input("Introduce el tipo de contrato del empleado: ")
     
-   
-
+   #Agregar empleado a la base de datos
     db[cedula]  = {
         'cedula': cedula,
         'nombres': nombres,
