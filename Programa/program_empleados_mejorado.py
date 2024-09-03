@@ -1,6 +1,7 @@
 #Shelve 
 import os # El módulo os en Python proporciona y expone los detalles y la funcionalidad del sistema operativo
 import shelve # shelve implementa el almacenamiento persistente para objetos arbitrarios de Python que pueden ser serializados, usando una interfaz de programación similar a un diccionario.
+import re
 
 def limpiar_pantalla():
     # Verificar el sistema operativo
@@ -14,15 +15,32 @@ def crear_empleado(db): # C (Create Creación empleados)
     print("*"*18)
     print("* CREAR EMPLEADO *")
     print("*"*18)
-    cedula = (input("Introduce la cedula: "))
+    while True:
+        cedula = (input("Introduce la cedula: "))
+        if not cedula.isdigit() or cedula in db:
+            print(f"La cedula debe ser número entero positivo y único")
+        else:
+            break
+
     nombres = input("Introduce los nombres del empleado: ")
     apellidos = input("Introduce los apellidos del empleado: ")
-    edad = int(input("Introduce la edad del empleado: "))
+    
+    while True:
+        try:
+            edad = int(input("Introduce la edad del empleado: "))
+            if edad <= 0:
+                raise ValueError("La edad debe ser positiva")
+            break
+        except ValueError:
+            print("La edad debe ser un número entero positivo.")
+    
     cargo = input("Introduce el cargo del empleado: ")
     fecha_ing = input("Introduce la fecha de ingreso del empleado: ")
     eps = input("Introduce la eps del empleado: ")
     salario = float(input("Introduce el salario: "))
     tipo_de_contrato = input("Introduce el tipo de contrato del empleado: ")
+    
+   
 
     db[cedula]  = {
         'cedula': cedula,
