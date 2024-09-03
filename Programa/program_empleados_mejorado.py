@@ -42,7 +42,7 @@ def crear_empleado(db): # C (Create Creación empleados)
     print("*"*18)
     print("* CREAR EMPLEADO *")
     print("*"*18)
-    while True:
+    while True: # Verifica que no este en base de datos
         cedula = (input("Introduce la cedula: "))
         if not cedula.isdigit() or cedula in db:
             print(f"La cedula debe ser número entero positivo y único")
@@ -52,7 +52,7 @@ def crear_empleado(db): # C (Create Creación empleados)
     nombres = input("Introduce los nombres del empleado: ")
     apellidos = input("Introduce los apellidos del empleado: ")
     
-    while True:
+    while True: # Valida edad evita numero entero negativo
         try:
             edad = int(input("Introduce la edad del empleado: "))
             if edad <= 0:
