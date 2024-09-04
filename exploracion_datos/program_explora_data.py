@@ -1,6 +1,6 @@
 import pandas as pd  #Importando libreria pandas con alias
 
-df = pd.read_csv('..\data\Order_v3.csv',encoding='Latin-1') # Cargamos archivo df (Data Frame)
+df = pd.read_csv('..\data\InventoryLot_v4.csv') # Cargamos archivo df (Data Frame)
 
 #print(df.head()) #Imprimir muestra de datos
 #print(df.tail()) #Muestra las ultimas filas del df
