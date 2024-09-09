@@ -10,4 +10,4 @@ df = pd.read_csv('..\data\InventoryLot_v4.csv') # Cargamos archivo df (Data Fram
 #print(df.shape) #La shape propiedad devuelve una tupla que contiene la forma del DataFrame.
 #print(df.dtypes) #Imprimir tipos de datos object(Pandas cadena de texto)
 #print(df.info()) #Imprime información detallada de columnas
-print(df.describe()) #mostramos estadísticas descriptivas del csv 
+#print(df.describe()) #mostramos estadísticas descriptivas del csv
