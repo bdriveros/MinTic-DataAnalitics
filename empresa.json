@@ -1,0 +1,30 @@
+{
+    "_default": {
+        "1": {
+            "cedula": "123456789",
+            "nombres": "Juan",
+            "apellidos": "Perez",
+            "cargo": "Dba",
+            "telefono": "654321",
+            "edad": "30",
+            "fecha_nac": "2021-10-01",
+            "correo": "j@j.com",
+            "direccion": "Cra 1 34 34",
+            "ciudad": "Bogot\u00e1",
+            "pais": "Colombia"
+        },
+        "2": {
+            "cedula": "123456789",
+            "nombres": "Juan",
+            "apellidos": "Perez",
+            "cargo": "Dba",
+            "telefono": "654321",
+            "edad": "30",
+            "fecha_nac": "2021-10-01",
+            "correo": "j@j.com",
+            "direccion": "Cra 1 34 34",
+            "ciudad": "Bogot\u00e1",
+            "pais": "Colombia"
+        }
+    }
+}

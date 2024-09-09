@@ -1,6 +1,34 @@
 #Shelve 
 import os # El módulo os en Python proporciona y expone los detalles y la funcionalidad del sistema operativo
 import shelve # shelve implementa el almacenamiento persistente para objetos arbitrarios de Python que pueden ser serializados, usando una interfaz de programación similar a un diccionario.
+import re
+from datetime import datetime
+
+def validar_fecha(fecha_ing):
+    """Valida si una fecha ingresada tiene el formato YYYY-MM-DD.
+
+    Args:
+        fecha_ing (str): Fecha ingresada por el usuario.
+
+    Returns:
+        bool: True si la fecha es válida, False en caso contrario.
+    """
+
+    # Expresión regular para validar el formato YYYY-MM-DD
+    patron = r"^\d{4}-\d{2}-\d{2}$"
+
+    # Verifica si la fecha coincide con el patrón
+    if re.match(patron, fecha_ing):
+        try:
+            # Intenta convertir la cadena a un objeto datetime
+            datetime.strptime(fecha_ing, "%Y-%m-%d")
+            return True
+        except ValueError:
+            return False
+    else:
+        return False
+
+
 
 def limpiar_pantalla():
     # Verificar el sistema operativo
@@ -8,22 +36,55 @@ def limpiar_pantalla():
         os.system('cls')
     else:  # Para Unix/Linux/MacOS
         os.system('clear')
-
 # CRUD
+
 def crear_empleado(db): # C (Create Creación empleados)
     print("*"*18)
     print("* CREAR EMPLEADO *")
     print("*"*18)
-    cedula = (input("Introduce la cedula: "))
+    
+    # Validacion de inputs
+    while True: # Verifica que no este en base de datos
+        cedula = (input("Introduce la cedula: "))
+        if not cedula.isdigit() or cedula in db:
+            print(f"La cedula debe ser número entero positivo y único")
+        else:
+            break
+
     nombres = input("Introduce los nombres del empleado: ")
     apellidos = input("Introduce los apellidos del empleado: ")
-    edad = int(input("Introduce la edad del empleado: "))
+    
+    while True: # Valida edad evita numero entero negativo
+        try:
+            edad = int(input("Introduce la edad del empleado: "))
+            if edad <= 0:
+                raise ValueError("La edad debe ser positiva")
+            break
+        except ValueError:
+            print(f"La edad debe ser un número entero positivo.")
+    
     cargo = input("Introduce el cargo del empleado: ")
-    fecha_ing = input("Introduce la fecha de ingreso del empleado: ")
+    fecha_ing = input("Introduce la fecha de ingreso del empleado (YYYY-MM-DD): ")
+    
+    if validar_fecha(fecha_ing):
+        print(f"Fecha válida.")
+    else:
+        print(f"Fecha inválida. Por favor, ingrese la fecha en formato YYYY-MM-DD.")
+    
     eps = input("Introduce la eps del empleado: ")
-    salario = float(input("Introduce el salario: "))
-    tipo_de_contrato = input("Introduce el tipo de contrato del empleado: ")
+    
+    while True:
+        try:
+            salario = float(input("Introduce el salario: "))
+            if salario <= 0:
+                raise  ValueError("El salario debe ser positivo")
+            break
+        except  ValueError:
+            print(f"El salario debe ser un número positivo")
 
+    tipo_de_contrato = input("Introduce el tipo de contrato del empleado: ")
+    
+   #Agregar empleado a la base de datos
     db[cedula]  = {
         'cedula': cedula,
         'nombres': nombres,
@@ -123,7 +184,7 @@ if __name__ == "__main__":
             elif opcion == "2":
                 listar_empleados(db)
             elif opcion == "3":
-                actualizar_empleados(db)                                    #editar_campo_empleado(db)
+                actualizar_empleados(db)                                
             elif opcion == "4":
                 eliminar_empleado(db)
             elif opcion == "5":
